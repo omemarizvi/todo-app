@@ -34,7 +34,7 @@ function Dashboard() {
           </div>
         ))}
       </div>
-      <TaskForm onCreate={handleTaskCreate} />
+      <Link to='/contactform'>Contact</Link>
     </div>
   );
 }
