@@ -3,7 +3,10 @@ import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import { Link } from 'react-router-dom';
 
+// Form to create tasks 
 function TaskForm(props) {
+
+  // constants defined
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('work');
   const [description, setDescription] = useState('');
@@ -30,6 +33,7 @@ function TaskForm(props) {
     setComplete(event.target.checked);
   };
 
+  // checks if required fields are filled and creates new task on submit
   const handleSubmit = (event) => {
     event.preventDefault();
     // console.log("bruh", title, event.category, description, deadline, completed, "bruh")

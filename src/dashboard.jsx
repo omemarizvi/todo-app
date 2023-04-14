@@ -38,13 +38,13 @@ function Dashboard() {
       <div  className="header-bar">
       <h1>Welcome, {user}!</h1>
       <div>
+        {/* links to contact and login */}
       <Link className='link' to='/contactform'>Contact</Link>
       <Link className='link' to='/login'>Logout</Link>
       </div>
       </div>
-      {/* <div className='card-body'> */}
-      {/* <Link to='/taskform'>Create Task</Link> */}
       <div className='flex-container'>
+        {/* task form and task list displayed on dashboard */}
       <div className='taskform'><TaskForm onTaskCreate={handleTaskCreate} tasks={tasks} /></div>
       <div className='tasklist'><TaskList tasks={tasks} onTaskDelete={handleTaskDelete} onEditTask={handleEditTask} onTaskUpdate={handleTaskUpdate} /></div>
       </div>
