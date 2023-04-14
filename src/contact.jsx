@@ -19,6 +19,7 @@ export default function Contact(){
     setMessage(event.target.value);
     };
 
+    // checks email and other fields
     const handleSubmit = () => {
         const isValidEmail = /\S+@\S+\.\S+/.test(email);
         if (!name || !email || !message) {
@@ -26,7 +27,6 @@ export default function Contact(){
             return;
         }
         if (isFormValid && isValidEmail) {
-            // Call a function here to submit the form data
             console.log('Submitting form...');
         }
     };
