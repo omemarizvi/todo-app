@@ -9,9 +9,14 @@ import './App.css';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [tasks, setTasks] = useState([]);
 
   const handleLogin = () => {
     setLoggedIn(true);
+  };
+
+  const handleTaskCreate = (task) => {
+    setTasks([...tasks, task]);
   };
 
   return (
@@ -20,8 +25,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/dashboard" element={loggedIn ? <Dashboard /> : <Login onLogin={handleLogin} />} />
-        <Route path="/" element={<Login />} />
-        <Route path='/taskform' element={<TaskForm/>}/>
+        <Route path="/" element={<Login onLogin={handleLogin} />} />
+        <Route path='/taskform' element={<TaskForm onTaskCreate={handleTaskCreate} tasks={tasks}/>}/>
         <Route path='contactform' element={<Contact/>}/>
       </Routes>
     </Router>

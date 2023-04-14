@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 
 function TaskForm(props) {
   const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('work');
   const [description, setDescription] = useState('');
   const [deadline, setDeadline] = useState(new Date());
-  const [complete, setComplete] = useState(false);
+  const [completed, setComplete] = useState(false);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -32,14 +32,21 @@ function TaskForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("bruh", title, event.category, description, deadline, completed, "bruh")
+    if (title.trim() === '' || category.trim() === '') {
+      alert('Please fill out all required fields');
+      return;
+    }
+
     const newTask = {
       title: title,
       category: category,
       description: description,
       deadline: deadline,
-      complete: complete
+      completed: completed
     };
-    props.onCreate(newTask);
+    console.log(newTask)
+    props.onTaskCreate(newTask);
     setTitle('');
     setDescription('');
     setDeadline('');
@@ -48,19 +55,22 @@ function TaskForm(props) {
 
   return (
     <div>
-        <div class="header-bar">
-        <h1>Create/Edit Task</h1>
-        </div>
-        
-        <div className='card-body'>
+      {/* <div className='header-bar'>
+      <h1>Create Task</h1>
+      <Link className='link' to='/dashboard'>Dashboard</Link>
+      <Link className='link' to='/login'>Logout</Link>
+      </div> */}
+        <div>
+          <h2>Create Task</h2>
         <form onSubmit={handleSubmit}>
         <label>
-          Title:
+          Title (Required):
+          <br/>
           <input type="text" value={title} onChange={handleTitleChange} />
         </label>
         <br />
         <label>
-          Category:
+          Category (Required):
           <select value={category} onChange={handleCategoryChange}>
             <option value="work">Work</option>
             <option value="personal">Personal</option>
@@ -79,11 +89,10 @@ function TaskForm(props) {
         <br />
         <label>
           Complete:
-          <input type="checkbox" checked={complete} onChange={handleCompleteChange} />
+          <input type="checkbox" checked={completed} onChange={handleCompleteChange} />
         </label>
         <br />
-        <button className='button' type="submit">Create</button>
-        <button className='button'><Link to="/dashboard" className='link'>Back</Link></button>
+        <button className='button' type="submit" >Create</button>
       </form>
       </div>
     </div>
